@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../数据结构/LinkedList.js"></script>
+</head>
+<body>
+<script>
+
+  // 教程：https://leetcode.cn/problems/add-two-numbers/solution/jian-dan-yi-dong-javacpythonjs-pei-yang-y2w6g/
+
+  const addTwoNumbers = function(l1, l2) {
+    const result = new LinkedList()
+    let carry = 0
+
+    while (l1 || l2) {
+      const x = l1 ? l1.data : 0
+      const y = l2 ? l2.data : 0
+
+      const sum = x + y + carry
+      result.append(sum % 10)
+      carry = Math.floor(sum / 10)
+
+      if (l1) l1 = l1.next
+      if (l2) l2 = l2.next
+    }
+
+    if (carry) {
+      result.append(carry)
+    }
+
+    return result
+  }
+
+  const l1 = new LinkedList() // 2 -> 5 -> 9
+  l1.append(2)
+  l1.append(5)
+  l1.append(9)
+  const l2 = new LinkedList() // 5 -> 6 -> 4 -> 4
+  l2.append(5)
+  l2.append(6)
+  l2.append(4)
+  l2.append(4)
+  console.log(addTwoNumbers(l1.head, l2.head)); // 7 -> 1 -> 4 -> 5
+</script>
+</body>
+</html>
