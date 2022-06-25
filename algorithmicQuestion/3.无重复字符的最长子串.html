@@ -39,49 +39,22 @@
   */
 
   // 滑动窗口
-  // for + while
-  /*
   function lengthOfLongestSubstring(s) {
     const n = s.length
     if (n <= 1) return n
 
-    const set = new Set()
-    let maxLength = 0
-
-    for (let left=0, right=0; right<n; right++) {
-      while (set.has(s[right])) {
-        set.delete(s[left])
-        left++
-      }
-      maxLength = Math.max(maxLength, right - left + 1)
-      set.add(s[right])
-    }
-    return maxLength
-  }
-  */
-  // while + if
-  function lengthOfLongestSubstring(s) {
-    const n = s.length
-    if (n <= 1) return n
-
-    const set = new Set()
+    const map = new Map()
     let maxLength = 0
     let left = 0, right = 0
     while (right < n) {
-      if (set.has(s[right])) {
-        set.delete(s[left])
-        left++
-      }
-      else {
-        maxLength = Math.max(maxLength, right - left + 1)
-        set.add(s[right])
-        right++
-      }
+      const rightCharIndex = map.has(s[right]) ? map.get(s[right]) : -1
+      left = Math.max(left, rightCharIndex + 1)
+      maxLength = Math.max(maxLength, right - left + 1)
+      map.set(s[right], right)
+      right++
     }
     return maxLength
   }
-
-
 
   console.log(lengthOfLongestSubstring('pwwkew'));
 
