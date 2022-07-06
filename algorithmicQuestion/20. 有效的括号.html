@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    // 栈：https://www.aliyundrive.com/s/8CfVmQ5Pt5Y
+    function isValid(s) {
+      if (!s.length) return true
+
+      if (s.length % 2 === 1) return false
+
+      const stack = []
+      const leftArr = ['(', '{', '[']
+      const rightArr = [')', '}', ']']
+      for (let i=0; i<s.length; i++) {
+        let current = s[i]
+        if (leftArr.includes(current)) {
+          stack.push(current)
+        }
+
+        if (rightArr.includes(current)) {
+          if (leftArr[rightArr.indexOf(current)] !== stack.pop()) {
+            return false
+          }
+        }
+      }
+
+      return stack.length === 0
+    }
+
+  console.log(isValid('{[]}'));
+
+</script>
+</body>
+</html>
