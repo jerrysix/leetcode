@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+
+  // 解法：https://www.aliyundrive.com/s/8f5nJGtMpHA
+
+  var RecentCounter = function() {
+    this.q = []
+  };
+
+  /**
+   * @param {number} t
+   * @return {number}
+   */
+  RecentCounter.prototype.ping = function(t) {
+    this.q.push(t)
+
+    while (this.q[0] < t - 3000) {
+      this.q.shift()
+    }
+
+    return this.q.length
+  };
+
+  var obj = new RecentCounter()
+  console.log(obj.ping(1));
+  console.log(obj.ping(100));
+  console.log(obj.ping(3001));
+  console.log(obj.ping(3002));
+
+</script>
+</body>
+</html>
