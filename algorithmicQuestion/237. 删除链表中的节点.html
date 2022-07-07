@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  // 解法：https://www.aliyundrive.com/s/SoWRfjK4EE4
+
+  /**
+   * Definition for singly-linked list.
+   * function ListNode(val) {
+   *     this.val = val;
+   *     this.next = null;
+   * }
+   */
+  /**
+   * @param {ListNode} node
+   * @return {void} Do not return anything, modify node in-place instead.
+   */
+
+    // 和下一个节点交换
+  var deleteNode = function(node) {
+      node.val = node.next.val;
+      node.next = node.next.next;
+    };
+</script>
+</body>
+</html>
