@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 解法：https://www.bilibili.com/video/BV1wA411b7qZ?p=28
+  /**
+   * Definition for singly-linked list.
+   * function ListNode(val) {
+   *     this.val = val;
+   *     this.next = null;
+   * }
+   */
+
+  /**
+   * @param {ListNode} head
+   * @return {boolean}
+   */
+  var hasCycle = function(head) {
+    let slow = head;
+    let fast = head;
+
+    while(slow && fast && fast.next) {
+      slow = slow.next;
+      fast = fast.next.next
+
+      if (slow === fast) {
+        return true
+      }
+    }
+
+    return false
+  };
+</script>
+</body>
+</html>
