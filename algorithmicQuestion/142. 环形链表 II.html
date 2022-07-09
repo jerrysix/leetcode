@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+  // 解法: https://www.bilibili.com/video/BV1wA411b7qZ?p=29&spm_id_from=pageDriver&vd_source=244f5741631fb78d3f66f81ba2789c7a
+
+  // 快慢指针
+  var detectCycle = function(head) {
+    if (head === null) return null;
+
+    let slow = head;
+    let fast = head;
+    let isCycle = false
+    while(slow && fast && fast.next) {
+      slow = slow.next;
+      fast = fast.next.next
+
+      if (slow === fast) {
+        isCycle = true
+        break;
+      }
+    }
+
+    if (!isCycle) {
+      return null
+    }
+
+    fast = head
+    while(slow !== fast){
+      slow = slow.next
+      fast = fast.next
+    }
+
+    return fast
+  };
+
+  // 哈希表
+  var detectCycle = function(head) {
+    if (head === null) return null;
+
+    const set = new Set()
+    let current = head
+    while (current) {
+      if (set.has(current)) {
+        return current
+      }
+
+      set.add(current)
+      current = current.next
+    }
+
+    return null
+  };
+</script>
+</body>
+</html>
